@@ -1,21 +1,40 @@
 import style from "./css_header.module.css"
 import { useState } from "react";
-
+import usePasswordGenerater from "../hook/usepassword"
 function Index() {
     const[length,setLength]=useState(4);
-    const checkboxData=[
+    const[checkboxData,setCheckboxData]=useState([
         {title:"uppercase Letter", state:false},
         {title:"lowercase Letter",state:false},
         {title:"Number",state:false},
         {title:"Symbols",state:false}
-    ];
+    ]);
     
+    const[copied,setCopied]=useState(false)   
+
+    const handleCheckbox=(index)=>{
+        const updatedcheckboxData=[...checkboxData]
+        updatedcheckboxData[index].state= !updatedcheckboxData[index].state
+        setCheckboxData(updatedcheckboxData);
+    }
+     
+    function handleCopy(){
+        navigator.clipboard.writeText(password)
+        setCopied(true);
+
+        setTimeout(()=>{
+            setCopied(false);
+        },1000);
+    }
+    
+
+    const{password,error,generatePassword}=usePasswordGenerater()
     return (
         <div>
-            <header>
-                <div className={style.title} >dgsogyogh</div>
-                <button className={style.copyBtn}>copy</button>
-            </header>
+           {password &&( <header>
+                <div className={style.title} >{password}</div>
+                <button className={style.copyBtn} onClick={handleCopy}>{copied ? "copied":"copy"}</button>
+            </header>)}
 
             <div className={style.charLength}>
                 <span>
@@ -30,13 +49,14 @@ function Index() {
             {
                 checkboxData.map((iteam,index)=>(
                     <div key={index}>
-                    <input type="checkbox" checked={iteam.state} />
+                    <input type="checkbox" onChange={()=>handleCheckbox(index)} checked={iteam.state} />
                     <label>{iteam.title}</label>
                     </div>
                 ))
             }
           </div>
-                 <button className={style.genertBtn}>genert button</button>
+          { error && <div>{error}</div>}
+                 <button className={style.genertBtn} onClick={()=>generatePassword(checkboxData,length)}>genert button</button>
         </div>
 
     )
