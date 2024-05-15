@@ -1,0 +1,36 @@
+.title{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+button{
+    padding: 10px;
+    background-color: rgb(166, 170, 169);
+    border-radius: 5px;
+    margin-top: 40px;
+}
+.charLength{
+    display: flex;
+justify-content: space-between;
+margin-top: 40px;
+font-size: 1.5rem;
+font-weight: 700;
+
+}
+
+.checkbox{
+    
+    margin-top: 40px;
+font-size: 1.5rem;
+font-weight: 700;
+}
+header{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.genertBtn{
+    text-align: center;
+    margin-left: 300px;
+   padding: 10px 50px;
+}

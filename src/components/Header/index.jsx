@@ -30,14 +30,16 @@ function Index() {
 
     const{password,error,generatePassword}=usePasswordGenerater()
     return (
-        <div>
+        <div style={{border:"2px solid",width:"50%",marginLeft:"400px",boxShadow:"10px 5px 5px 5px",backgroundColor:"blanchedalmond"}}>
+           <center style={{fontSize:"1.5rem",boxShadow:"10px 5px 5px 5px"}}>Password Generater</center>
+           
            {password &&( <header>
                 <div className={style.title} >{password}</div>
                 <button className={style.copyBtn} onClick={handleCopy}>{copied ? "copied":"copy"}</button>
             </header>)}
 
             <div className={style.charLength}>
-                <span>
+                <span >
                     <label>Character Length</label>
                     <label>{length}</label>
 
